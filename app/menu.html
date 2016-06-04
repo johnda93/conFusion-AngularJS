@@ -27,20 +27,20 @@
         <div class="row row-content" ng-controller="menuController as menuCtrl">
             <div class="col-xs-12">
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation">
-                        <a aria-controls="all menu" role="tab">The Menu</a>
+                    <li ng-class="{active: menuCtrl.isSelected(1)}" role="presentation">
+                        <a ng-click="menuCtrl.select(1)" aria-controls="all menu" role="tab">The Menu</a>
                     </li>
 
-                    <li role="presentation">
-                        <a aria-controls="appetizers" role="tab">Appetizers</a>
+                    <li ng-class="{active: menuCtrl.isSelected(2)}" role="presentation">
+                        <a ng-click="menuCtrl.select(2)" aria-controls="appetizers" role="tab">Appetizers</a>
                     </li>
 
-                    <li role="presentation">
-                        <a aria-controls="mains" role="tab">Mains</a>
+                    <li ng-class="{active: menuCtrl.isSelected(3)}" role="presentation">
+                        <a ng-click="menuCtrl.select(3)" aria-controls="mains" role="tab">Mains</a>
                     </li>
 
-                    <li role="presentation">
-                        <a aria-controls="desserts" role="tab">Desserts</a>
+                    <li ng-class="{active: menuCtrl.isSelected(4)}" role="presentation">
+                        <a ng-click="menuCtrl.select(4)" aria-controls="desserts" role="tab">Desserts</a>
                     </li>
                 </ul>
 
@@ -75,7 +75,9 @@
         var app = angular.module('confusionApp', []);
 
         app.controller('menuController', function () {
-            var dishes = [
+            this.tab = 1;
+
+            this.dishes = [
                 {
                     name: 'Uthapizza',
                     image: 'images/uthapizza.png',
@@ -114,7 +116,9 @@
                 }
             ];
 
-            this.dishes = dishes;
+            this.isSelected = function (checkTab) {
+                return (this.tab === checkTab);
+            }
         });
     </script>
 </body>

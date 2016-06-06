@@ -1,0 +1,22 @@
+{
+  "name": "confusion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnda93/conFusion-AngularJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnda93/conFusion-AngularJS/issues"
+  },
+  "homepage": "https://github.com/johnda93/conFusion-AngularJS#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  }
+}

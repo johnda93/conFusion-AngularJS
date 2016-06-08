@@ -3,6 +3,7 @@ var app = angular.module('confusionApp', []);
 app.controller('MenuController', ['$scope', function ($scope) {
     $scope.tab = 1;
     $scope.filtText = "";
+    $scope.showDetails = false;
         
     $scope.dishes = [
         {
@@ -59,5 +60,9 @@ app.controller('MenuController', ['$scope', function ($scope) {
             
     $scope.isSelected = function (checkTab) {
         return ($scope.tab === checkTab);
+    };
+
+    $scope.toggleDetails = function() {
+        $scope.showDetails = !$scope.showDetails;
     };
 }]);

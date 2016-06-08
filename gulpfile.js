@@ -10,7 +10,7 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     changed = require('gulp-changed'),
     rev = require('gulp-rev'),
-    browserSync = require('browser-sync'),
+    browserSync = require('browser-sync').create(),
     del = require('del'),
     run_sequence = require('run-sequence');
 
@@ -51,9 +51,35 @@ gulp.task('copyfonts', function () {
         .pipe(gulp.dest('./dist/fonts'));
 });
 
+gulp.task('browser-sync', function () {
+    //Watch files to inject changes
+    var files = [
+        'app/**/*.html',
+        'app/styles/**/*.css',
+        'app/images/**/*.png',
+        'app/scripts/**/*.js'
+    ];
+
+    browserSync.init(files, {
+        server: {
+            baseDir: "./",
+            index: "app/menu.html"
+        }
+    });
+});
+
+gulp.task('watch', ['browser-sync'], function() {
+    //Do some watching tasks like compiling sass
+    //gulp.watch('app/scss/**/*.scss', ['sass']); 
+});
+
 gulp.task('build', function (callback) {
     run_sequence('clean',
         ['usemin', 'imagemin', 'copyfonts'],
         callback
     );
+});
+
+gulp.task('default', function (callback) {
+    run_sequence('watch', callback);
 });

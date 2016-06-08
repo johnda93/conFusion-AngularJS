@@ -3,6 +3,7 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
     uglify = require('gulp-uglify'),
+    ngannotate = require('gulp-ng-annotate'),
     usemin = require('gulp-usemin'),
     imagemin = require('gulp-imagemin'),
     rename = require('gulp-rename'),
@@ -28,7 +29,7 @@ gulp.task('usemin', ['jshint'], function () {
     return gulp.src('./app/menu.html')
         .pipe(usemin({
             css:[cleancss(), rev()],
-            js: [uglify(), rev()]
+            js: [ngannotate(), uglify(), rev()]
         }))
         .pipe(gulp.dest('dist'));
 });

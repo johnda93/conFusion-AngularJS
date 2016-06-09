@@ -67,11 +67,17 @@
                 </blockquote>
 
                 <form class="form-horizontal" name="comment_form" role="form" novalidate>
-                    <div class="form-group">
+                    <div class="form-group" ng-class="{'has-error': comment_form.name.$error.required && !comment_form.name.$pristine}">
                         <label for="name" class="col-sm-2 control-label">Your Name</label>
 
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" ng-model="comment.author">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" ng-model="comment.author" required>
+                        </div>
+
+                        <div class="col-sm-10 col-sm-offset-2" ng-show="comment_form.name.$error.required && !comment_form.name.$pristine">
+                            <span class="help-block">
+                                Your Name is required.
+                            </span>
                         </div>
                     </div>
 
@@ -101,17 +107,23 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="feedback" class="col-sm-2 control-label">Your Comments</label>
+                    <div class="form-group" ng-class="{'has-error': comment_form.comment.$error.required && !comment_form.comment.$pristine}">
+                        <label for="comment" class="col-sm-2 control-label">Your Comments</label>
 
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="feedback" name="feedback" rows="12" ng-model="comment.comment"></textarea>
+                            <textarea class="form-control" id="comment" name="comment" rows="12" ng-model="comment.comment" required></textarea>
+                        </div>
+
+                        <div class="col-sm-10 col-sm-offset-2" ng-show="comment_form.comment.$error.required && !comment_form.comment.$pristine">
+                            <span class="help-block">
+                                Your Comments are required.
+                            </span>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Submit Comment</button>
+                            <button type="submit" class="btn btn-primary" ng-disabled="comment_form.$invalid">Submit Comment</button>
                         </div>
                     </div>
                 </form>

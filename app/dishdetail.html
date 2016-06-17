@@ -59,12 +59,16 @@
             </div>
 
             <div class="col-xs-9 col-xs-offset-1" ng-controller="DishCommentController">
-                <blockquote ng-show="comment_form.$valid && !comment_form.$pristine">
-                    <p>{{comment.rating}} Stars</p>
-                    <p>{{comment.comment}}</p>
+                <ul class="list-unstyled">
+                    <li>
+                        <blockquote ng-show="comment_form.$valid && !comment_form.$pristine">
+                            <p>{{comment.rating}} Stars</p>
+                            <p>{{comment.comment}}</p>
 
-                    <footer>{{comment.author}}, {{comment.date | date}}</footer>
-                </blockquote>
+                            <footer>{{comment.author}}, {{comment.date | date}}</footer>
+                        </blockquote>
+                    </li>
+                </ul>
 
                 <form class="form-horizontal" name="comment_form" role="form" ng-submit="submitComment()" novalidate>
                     <div class="form-group" ng-class="{'has-error': comment_form.name.$error.required && !comment_form.name.$pristine}">

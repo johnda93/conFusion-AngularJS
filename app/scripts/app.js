@@ -4,6 +4,9 @@ angular.module('confusionApp', ['ui.router'])
             .state('app', {
                 url: '/',
                 views: {
+                    'navbar': {
+                        templateUrl: 'views/navbar.html'
+                    },
                     'header': {
                         templateUrl: 'views/header.html'
                     },

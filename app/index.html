@@ -24,16 +24,14 @@
 </head>
 
 <body>
-    <ng-include src="'navbar.html'"></ng-include>
-    <ng-include src="'header.html'"></ng-include>
-
-    <ng-view></ng-view>
-
-    <ng-include src="'footer.html'"></ng-include>
+    <ui-view name="navbar"></ui-view>
+    <ui-view name="header"></ui-view>
+    <ui-view name="content"></ui-view>
+    <ui-view name="footer"></ui-view>
 
     <!-- build:js scripts/main.js -->
     <script src="../bower_components/angular/angular.js"></script>
-    <script src="../bower_components/angular-route/angular-route.min.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers.js"></script>
     <script src="scripts/services.js"></script>

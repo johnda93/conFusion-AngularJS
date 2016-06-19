@@ -35,6 +35,7 @@
                 <h2 class="media-heading">
                     {{promotion.name}}
                     <span class="label label-danger">{{promotion.label}}</span>
+                    <span class="badge">{{promotion.price | currency}}</span>
                 </h2>
 
                 <p>{{promotion.description}}</p>
@@ -64,11 +65,10 @@
             <div class="media-body">
                 <h2 class="media-heading">
                     {{leader.name}}
+                    <small>{{leader.designation}}</small>
                 </h2>
 
-                <h4>{{leader.designation}}</h4>
-
-                <p>{{dish.description}}</p>
+                <p>{{leader.description}}</p>
             </div>
         </div>
     </div>

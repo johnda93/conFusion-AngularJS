@@ -102,5 +102,5 @@ angular.module('confusionApp')
         $scope.leader = corporateFactory.getLeader("Executive Chef");
     }])
     .controller('AboutController', ['$scope', '$stateParams', 'corporateFactory', function ($scope, $stateParams, corporateFactory) {
-
+        $scope.leadership = corporateFactory.getLeaders();
     }]);

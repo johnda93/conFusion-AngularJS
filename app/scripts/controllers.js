@@ -95,4 +95,12 @@ angular.module('confusionApp')
                 rating: 5
             };
         }
+    }])
+    .controller('IndexController', ['$scope', '$stateParams', 'menuFactory', 'corporateFactory', function ($scope, $stateParams, menuFactory, corporateFactory) {
+        $scope.dish = menuFactory.getDish(0);
+        $scope.promotion = menuFactory.getPromotion("New");
+        $scope.leader = corporateFactory.getLeader("Executive Chef");
+    }])
+    .controller('AboutController', ['$scope', '$stateParams', 'corporateFactory', function ($scope, $stateParams, corporateFactory) {
+
     }]);

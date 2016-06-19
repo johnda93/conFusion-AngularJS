@@ -141,8 +141,12 @@ angular.module('confusionApp')
             return dishes[index];
         };
 
-        menuFactory.getPromotion = function (index) {
-            return promotions[index];
+        menuFactory.getPromotion = function (label) {
+            for (var i = 0; i < promotions.length; i++) {
+                if (promotions[i].label === label) {
+                    return promotions[i];
+                }
+            }
         };
 
         return menuFactory;
@@ -185,7 +189,13 @@ angular.module('confusionApp')
             return leadership;
         };
 
-        corporateFactory.getLeader = function (index) {
-            return leadership[index];
-        }
+        corporateFactory.getLeader = function (designation) {
+            for (var i = 0; i < leadership.length; i++) {
+                if (leadership[i].designation === designation) {
+                    return leadership[i];
+                }
+            }
+        };
+
+        return corporateFactory;
     });

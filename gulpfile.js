@@ -26,7 +26,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('usemin', ['jshint'], function () {
-    return gulp.src('./app/menu.html')
+    return gulp.src('./app/**/*.html')
         .pipe(usemin({
             css:[cleancss(), rev()],
             js: [ngannotate(), uglify(), rev()]
@@ -64,7 +64,7 @@ gulp.task('browser-sync', function () {
     browserSync.init(files, {
         server: {
             baseDir: "./",
-            index: "app/menu.html"
+            index: "app/index.html"
         }
     });
 });

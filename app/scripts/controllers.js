@@ -2,11 +2,14 @@
 
 angular.module('confusionApp')
     .controller('MenuController', ['$scope', 'menuFactory', function ($scope, menuFactory) {
+        $scope.dishes = [];
         $scope.tab = 1;
         $scope.filtText = "";
         $scope.showDetails = false;
 
-        $scope.dishes = menuFactory.getDishes();
+        menuFactory.getDishes().then(function (response) {
+            $scope.dishes = response.data;
+        });
     
         $scope.select = function (setTab) {
             $scope.tab = setTab;
@@ -75,9 +78,13 @@ angular.module('confusionApp')
         };
     }])
     .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function ($scope, $stateParams, menuFactory) {
+        $scope.dish = {};
         $scope.order = "";
-    
-        $scope.dish = menuFactory.getDish(parseInt($stateParams.id));
+
+        menuFactory.getDish(parseInt($stateParams.id)).then(function (response) {
+            $scope.dish = response.data;
+            $scope.showDish = true;
+        });
     }])
     .controller('DishCommentController', ['$scope', function ($scope) {
         $scope.comment = {
@@ -97,7 +104,13 @@ angular.module('confusionApp')
         }
     }])
     .controller('IndexController', ['$scope', '$stateParams', 'menuFactory', 'corporateFactory', function ($scope, $stateParams, menuFactory, corporateFactory) {
-        $scope.dish = menuFactory.getDish(0);
+        $scope.dish = {};
+
+        menuFactory.getDish(0).then(function (response) {
+            $scope.dish = response.data;
+            $scope.showDish = true;
+        });
+
         $scope.promotion = menuFactory.getPromotion("New");
         $scope.leader = corporateFactory.getLeader("Executive Chef");
     }])

@@ -2,7 +2,7 @@
 
 angular.module('confusionApp')
     .constant('baseURL', 'http://localhost:3000/')
-    .factory('menuFactory', function () {
+    .factory('menuFactory', ['$resource', 'baseURL', function ($resource, baseURL) {
         var promotions = [
             {
                 _id: 0,
@@ -27,7 +27,7 @@ angular.module('confusionApp')
         };
 
         return menuFactory;
-    })
+    }])
     .factory('corporateFactory', function () {
         var corporateFactory = {};
 

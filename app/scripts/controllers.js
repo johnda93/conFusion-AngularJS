@@ -8,7 +8,14 @@ angular.module('confusionApp')
         $scope.showMenu = true;
         $scope.message = "Loading ...";
 
-        $scope.dishes = menuFactory.getDishes().query();
+        $scope.dishes = menuFactory.getDishes().query(
+            function (response) {
+                $scope.dishes = response;
+                $scope.showMenu = true;
+            },
+            function (response) {
+                $scope.message = "Error: " + response.status + " " + response.statusText;
+            });
     
         $scope.select = function (setTab) {
             $scope.tab = setTab;
@@ -81,7 +88,15 @@ angular.module('confusionApp')
         $scope.showDish = true;
         $scope.message = "Loading ...";
 
-        $scope.dish = menuFactory.getDishes().get({id: parseInt($stateParams.id)});
+        $scope.dish = menuFactory.getDishes().get({id: parseInt($stateParams.id)}).$promise.then(
+            function (response){
+                $scope.dish = response;
+                $scope.showDish = true;
+            },
+            function (response) {
+                $scope.message = "Error: " + response.status + " " + response.statusText;
+            }
+        );
     }])
     .controller('DishCommentController', ['$scope', function ($scope) {
         $scope.comment = {
@@ -104,7 +119,16 @@ angular.module('confusionApp')
         $scope.showDish = true;
         $scope.message = "Loading ...";
 
-        $scope.dish = menuFactory.getDishes().get({id: 0});
+        $scope.dish = menuFactory.getDishes().get({id: 0}).$promise.then(
+            function (response){
+                $scope.dish = response;
+                $scope.showDish = true;
+            },
+            function (response) {
+                $scope.message = "Error: " + response.status + " " + response.statusText;
+            }
+        );
+
         $scope.promotion = menuFactory.getPromotion("New");
         $scope.leader = corporateFactory.getLeader("Executive Chef");
     }])

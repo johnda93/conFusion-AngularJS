@@ -98,7 +98,7 @@ angular.module('confusionApp')
             }
         );
     }])
-    .controller('DishCommentController', ['$scope', function ($scope) {
+    .controller('DishCommentController', ['$scope', 'menuFactory', function ($scope, menuFactory) {
         $scope.comment = {
             rating: 5
         };
@@ -107,6 +107,8 @@ angular.module('confusionApp')
             $scope.comment.date = new Date().toISOString();
     
             $scope.dish.comments.push($scope.comment);
+
+            menuFactory.getDishes().update({id: $scope.dish.id}, $scope.dish);
     
             $scope.comment_form.$setPristine();
     

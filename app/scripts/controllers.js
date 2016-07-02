@@ -5,8 +5,10 @@ angular.module('confusionApp')
         $scope.tab = 1;
         $scope.filtText = "";
         $scope.showDetails = false;
+        $scope.showMenu = true;
+        $scope.message = "Loading ...";
 
-        $scope.dishes = menuFactory.getDishes();
+        $scope.dishes = menuFactory.getDishes().query();
     
         $scope.select = function (setTab) {
             $scope.tab = setTab;
@@ -76,8 +78,10 @@ angular.module('confusionApp')
     }])
     .controller('DishDetailController', ['$scope', '$stateParams', 'menuFactory', function ($scope, $stateParams, menuFactory) {
         $scope.order = "";
-    
-        $scope.dish = menuFactory.getDish(parseInt($stateParams.id));
+        $scope.showDish = true;
+        $scope.message = "Loading ...";
+
+        $scope.dish = menuFactory.getDishes().get({id: parseInt($stateParams.id)});
     }])
     .controller('DishCommentController', ['$scope', function ($scope) {
         $scope.comment = {
@@ -97,7 +101,10 @@ angular.module('confusionApp')
         }
     }])
     .controller('IndexController', ['$scope', '$stateParams', 'menuFactory', 'corporateFactory', function ($scope, $stateParams, menuFactory, corporateFactory) {
-        $scope.dish = menuFactory.getDish(0);
+        $scope.showDish = true;
+        $scope.message = "Loading ...";
+
+        $scope.dish = menuFactory.getDishes().get({id: 0});
         $scope.promotion = menuFactory.getPromotion("New");
         $scope.leader = corporateFactory.getLeader("Executive Chef");
     }])

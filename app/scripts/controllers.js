@@ -144,7 +144,7 @@ angular.module('confusionApp')
             }
         );
 
-        corporateFactory.get({id: 0}).$promise.then(
+        corporateFactory.get({id: 3}).$promise.then(
             function (response){
                 $scope.leader = response;
                 $scope.showLeader = true;

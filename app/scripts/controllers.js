@@ -61,14 +61,15 @@ angular.module('confusionApp')
     
         $scope.invalidChannelSelection = false;
     }])
-    .controller('FeedbackController', ['$scope', function ($scope) {
+    .controller('FeedbackController', ['$scope', 'feedbackFactory', function ($scope, feedbackFactory) {
         $scope.sendFeedback = function () {
-            console.log($scope.feedback);
             if ($scope.feedback.agree && ($scope.feedback.mychannel == "")&& !$scope.feedback.mychannel) {
                 $scope.invalidChannelSelection = true;
-                console.log('incorrect');
             } else {
+                new feedbackFactory($scope.feedback).$save();
+                
                 $scope.invalidChannelSelection = false;
+                
                 $scope.feedback = {
                     mychannel: "",
                     firstName: "",
@@ -76,10 +77,8 @@ angular.module('confusionApp')
                     agree: false,
                     email: ""
                 };
-                $scope.feedback.mychannel="";
     
                 $scope.feedbackForm.$setPristine();
-                console.log($scope.feedback);
             }
         };
     }])
